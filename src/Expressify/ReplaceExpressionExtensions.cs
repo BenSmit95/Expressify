@@ -15,10 +15,10 @@ public static class ReplaceExpressionExtensions
         // Can't replace the entire node
         if (search == node)
             throw new ArgumentException("The search cannot be the same as the node.", nameof(search));
-        
-        var replacedExpression = new ReplaceExpressionVisitor(search, replace).Visit(node) as TExpression;
 
-        if (replacedExpression == null)
+        var replaceExpressionVisitor = new ReplaceExpressionVisitor(search, replace);
+        
+        if (replaceExpressionVisitor.Visit(node) is not TExpression replacedExpression)
             throw new Exception("The replaced expression is not of the expected type.");
         
         return replacedExpression;

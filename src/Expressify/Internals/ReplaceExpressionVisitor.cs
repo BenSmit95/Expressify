@@ -8,6 +8,6 @@ public class ReplaceExpressionVisitor(Expression search, Expression replace) : E
     [return: NotNullIfNotNull("node")]
     public override Expression? Visit(Expression? node)
     {
-        return node == search ? base.Visit(node) : replace;
+        return node == search ? replace : base.Visit(node);
     }
 }
